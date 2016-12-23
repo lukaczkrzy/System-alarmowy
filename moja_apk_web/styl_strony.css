@@ -1,0 +1,146 @@
+@CHARSET "UTF-8";
+
+body
+{
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+
+.okno_glowne
+{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.logo
+{
+	margin-top: 30px;
+	min-height: 50px;
+	font-size: 30pt;
+	font-weight: 900;
+	letter-spacing: 3px;
+	font-family: 'Exo', sans-serif;
+}
+
+.top_okno
+{
+	width: 800px;
+	min-height: 50px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	float: left;
+	text-align: center;
+	font-size: 16pt;
+}
+
+.formularz
+{
+	
+	float: left;
+	padding: 15px;
+	min-height: 50px;
+	width: 168px;
+	border-left: 2px solid #000000;
+	text-align: center;
+}
+
+.lewe_okno_menu
+{
+	clear: both;
+	float: left;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-right: 2px solid black;
+	padding-right: 20px;
+	width: 228px;
+	min-height: 300px;
+	padding-top: 10px;
+}
+
+.prawe_okno_text
+{
+	width: 710px;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: left;
+	padding: 20px;
+}
+
+.stopka
+{
+	clear: both;
+}
+
+.przyciski
+{
+	padding: 5px;
+	min-width: 100px;
+	font-size: 12pt;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #D9D9D9
+}
+
+.przyciski:HOVER
+{
+	background-color: #F5BF78;
+}
+
+.pole_input
+{
+	width: 320px;
+}
+
+input[ type = text ],
+input[ type = password ],
+input[ type = email ]
+{
+	width: 300px;
+	background-color: #F5F5F5;
+	border-radius: 5px;
+	font-size: 12pt;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+input[ type = submit ]
+{
+	background-color: #D9D9D9
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+input[ type = reset ]
+{
+	background-color: #D9D9D9
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+input[ type = submit ]:HOVER 
+{
+	background-color: #F5BF78;
+}
+
+input[ type = reset ]:HOVER 
+{
+	background-color: #F5BF78;
+}
+
+
+.przycisk_link
+{
+	text-decoration: none;
+	display: block;
+	color: black;
+}

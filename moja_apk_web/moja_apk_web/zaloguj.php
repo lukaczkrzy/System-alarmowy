@@ -23,9 +23,9 @@ else //to szukaj danych
 	
 	$login = htmlentities( $login ); //eliminacja nieporzadanych znakow /- itp. zamiana na string
 	
-	$zapytanie = sprintf( "SELECT * FROM dane_uzytkownikow WHERE login = '%s' ", //wstrzykiwanie sql eliminacja
+	$query = sprintf( "SELECT * FROM dane_uzytkownikow WHERE login = '%s' ", //wstrzykiwanie sql eliminacja
 			mysqli_real_escape_string($polaczenie, $login));//poprzez typ string
-	$szukaj = mysqli_query( $polaczenie, $zapytanie ); //wyslanie zapytania sql
+	$szukaj = mysqli_query( $polaczenie, $query ); //wyslanie zapytania sql
 	
 	$liczba_uzytkownikow = mysqli_num_rows( $szukaj ); //zwraca liczbe uzytkownikow 
 
@@ -35,25 +35,29 @@ else //to szukaj danych
 		
 		if( password_verify( $haslo, $dane['haslo']) ) //weryfikacja hasła hashowanego z podanym
 		{
+			$_SESSION['id_uzytkow'] = $dane['id'];
+			$_SESSION['email'] = $dane[ 'email' ]; //wypisywanie danych z db
+			$_SESSION['ip'] = $dane[ 'ip' ];
 			$_SESSION['login'] = $dane[ 'login' ];
-		
+			$_SESSION['godz_logowania'] = $dane['data_logowania'];
+	
 			$_SESSION['zalogowano'] = true; 
 		
 			unset($_SESSION['blad_log']);    //usun zmienna 
 		
 			mysqli_free_result( $szukaj );   //usunięcie danych 
-			header( 'Location: index.php' );
+			header( 'Location: zalogowano.php' );
 		}
 		else
 		{
-			$_SESSION['blad_log'] = '<p style = "color: red"> Błąd logowania, zły login bądz hasło!!! <br><br></p>';
-			header('Location: formularz_logowania.php' ); //powrot do logowania
+			$_SESSION['blad_log'] = "<br>Błąd logowania do seriwsu, zły login bądz hasło";
+			header('Location: index.php' ); //powrot do logowania
 		}
 	}
 	else 
 	{
-		$_SESSION['blad_log'] = '<p style = "color: red"> Błąd logowania, zły login bądz hasło!!!<br><br></p>';
-		header('Location: formularz_logowania.php' ); //powrot do logowania
+		$_SESSION['blad_log'] = "<br>Błąd logowania do seriwsu, zły login bądz hasło";
+		header('Location: index.php' ); //powrot do logowania
 	}
 	mysqli_close( $polaczenie ); //zamkniecie polaczenia
 }

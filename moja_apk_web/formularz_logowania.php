@@ -5,12 +5,13 @@ session_start();
 
 ?>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
 	
 		<meta charset="UTF-8">
-		<title>Strona główna</title>
+		<title>Kontakt z administratorem</title>
 		<link rel = "stylesheet" href = "styl_strony.css" type = "text/css" >
 		<link href = "https://fonts.googleapis.com/css?family=Lato" rel = "stylesheet" >
 		<link href = "https://fonts.googleapis.com/css?family=Exo:900" rel = "stylesheet">
@@ -19,41 +20,26 @@ session_start();
 	
 		<body>
 			
-			<div class = "okno_glowne" >
+			<div class = okno_glowne >
 			
 				<div class = "logo" >
 					Domowe systemy alarmowe
 				</div>
-				
+			 
 				<div class = "top_okno" >
 					Bezpieczeństwo to jedna z najbardziej cenionych wartości w życiu człowieka. <br>
 					Chcemy chronić siebie, swoich bliskich oraz nasze mienie.
-				</div>
+    			</div>
+    			
+    			<div class = "formularz" >
+					<div class = "przyciski" > 
+						<a href = "formularz_logowania.php" class = "przycisk_link" > Zaloguj się </a>
+					</div>
+					<div class = "przyciski" >
+						<a href = "rejestracja_form.php " class = "przycisk_link" > Zarejestruj się </a>
+					</div>
+				</div>	
 				
-				<?php
-					if( !isset( $_SESSION[ 'zalogowano' ] ) )
-					{
-						echo '<div class = "formularz" >';
-						echo 	'<div class = "przyciski" >';
-						echo		'<a href = "formularz_logowania.php" class = "przycisk_link" > Zaloguj się </a>';
-						echo	'</div>';
-						echo	'<div class = "przyciski" >';
-						echo		'<a href = "rejestracja_form.php " class = "przycisk_link" > Zarejestruj się </a>';
-						echo	'</div>';
-						echo '</div>';
-						
-					}
-					else 
-					{
-						echo '<div class = "formularz" >';
-						echo 	'Witaj '.$_SESSION[ 'login' ];
-						echo 	'<div class = "przyciski" >';
-						echo		'<a href = "wyloguj.php" class = "przycisk_link" > Wyloguj się </a>';
-						echo	'</div>';
-						echo '</div>';
-					}
-				?>
-					
 				<div class = "lewe_okno_menu" >	
 					<div class = "przyciski" > 		
 						<a href = "index.php" class = "przycisk_link" > Strona główna </a> 
@@ -73,7 +59,23 @@ session_start();
 				</div>
 				
 				<div class = "prawe_okno_text" >
-					<img alt="system_alarmowy" src="alarm.jpg" >
+					<div class = "pole_input" >
+						<form action="zaloguj.php" method="post" >
+							
+							<?php
+								if( isset( $_SESSION[ 'blad_log'] ) )
+								{
+									echo $_SESSION[ 'blad_log' ];
+									unset( $_SESSION[ 'blad_log' ] );
+								}
+							?>
+							
+							Podaj swój login: <input name = "login" type = "text" > 
+							Podaj swoje hasło: <input name = "haslo" type = "password" >
+							<input type = "submit" value = "Zaloguj się" >
+							<input type = "reset" value = "Resetuj pola formularza" >
+						</form>
+					</div>
 				</div>
 				
 				<div class = "stopka" >					

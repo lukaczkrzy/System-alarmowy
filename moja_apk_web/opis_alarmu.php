@@ -10,7 +10,7 @@ session_start();
 	<head>
 	
 		<meta charset="UTF-8">
-		<title>Strona główna</title>
+		<title>Opisa systemu alarmowego</title>
 		<link rel = "stylesheet" href = "styl_strony.css" type = "text/css" >
 		<link href = "https://fonts.googleapis.com/css?family=Lato" rel = "stylesheet" >
 		<link href = "https://fonts.googleapis.com/css?family=Exo:900" rel = "stylesheet">
@@ -19,18 +19,18 @@ session_start();
 	
 		<body>
 			
-			<div class = "okno_glowne" >
+			<div class = okno_glowne >
 			
 				<div class = "logo" >
 					Domowe systemy alarmowe
 				</div>
-				
+			 
 				<div class = "top_okno" >
 					Bezpieczeństwo to jedna z najbardziej cenionych wartości w życiu człowieka. <br>
 					Chcemy chronić siebie, swoich bliskich oraz nasze mienie.
-				</div>
-				
-				<?php
+    			</div>
+    			
+    			<?php
 					if( !isset( $_SESSION[ 'zalogowano' ] ) )
 					{
 						echo '<div class = "formularz" >';
@@ -53,7 +53,7 @@ session_start();
 						echo '</div>';
 					}
 				?>
-					
+				
 				<div class = "lewe_okno_menu" >	
 					<div class = "przyciski" > 		
 						<a href = "index.php" class = "przycisk_link" > Strona główna </a> 
@@ -73,7 +73,8 @@ session_start();
 				</div>
 				
 				<div class = "prawe_okno_text" >
-					<img alt="system_alarmowy" src="alarm.jpg" >
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent venenatis dolor ut urna lobortis, sit amet feugiat elit pulvinar. Curabitur laoreet enim ligula, at gravida arcu pharetra non. Mauris ipsum diam, blandit ut vestibulum id, sollicitudin suscipit leo. Cras ut neque id nibh pellentesque faucibus. Nulla viverra quam in sodales eleifend. In hendrerit non eros eu rhoncus. Nam pulvinar dolor vel aliquam aliquam. Cras vitae lorem commodo, sollicitudin augue nec, ullamcorper libero. Cras ultricies venenatis consequat. Nunc vel posuere sem. Sed consequat felis massa, at ornare nisl feugiat at.
+					<br> <br>
 				</div>
 				
 				<div class = "stopka" >					

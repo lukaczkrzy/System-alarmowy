@@ -12,7 +12,7 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 	if( $dlugosc_loginu < 5 || $dlugosc_loginu > 20 )
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_login'] = "Login powinien zawierać od 5 do 20 znaków!";
+		$_SESSION['blad_login'] = '<p style = "color: red"> Login powinien zawierać od 5 do 20 znaków! <br><br></p>';
 		header('Location: rejestracja_form.php');
 	}
 	
@@ -21,7 +21,7 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 	if( $znaki_spec == false ) 
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_login'] = "Login powinien składać się z liter i cyfr bez polskich znaków!";
+		$_SESSION['blad_login'] = '<p style = "color: red"> Login powinien składać się z liter i cyfr! <br><br></p>';
 		header('Location: rejestracja_form.php'); 
 	}
 	
@@ -33,33 +33,21 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 	if( $dl_haslo < 5 || $dl_haslo > 20 )
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_haslo'] = "Hasło powinno składać się od 5 do 20 znaków!";
+		$_SESSION['blad_haslo'] = '<p style = "color: red"> Hasło powinno zawierać od 5 do 20 znaków! <br><br></p>';;
 		header('Location: rejestracja_form.php');
 	}
 	
 	if( $haslo != $haslo1 )
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_haslo'] = "Podane hasła róznią się!";
+		$_SESSION['blad_haslo'] = '<p style = "color: red"> Podane hasła nie są takie same! <br><br></p>';;
 		header('Location: rejestracja_form.php');
 	}
 	
 	if( !isset( $_POST['regulamin'] ) ) //akceptacja regulaminu
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_regulamin'] = "Zaakcepuj regulamin!";
-		header('Location: rejestracja_form.php');
-	}
-	
-	$klucz_capcha = "6LeFWAoUAAAAAMObUZOdeqNTF7N3jD_LHFvWAB_8";
-	$sprawdz_capcha = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$klucz_capcha.'&response='.$_POST['g-recaptcha-response']); //pobierz zawartosc pliku do zmiennej w nawiasie adres pliku w google
-	
-	$odpowedz_google = json_decode( $sprawdz_capcha ); //dekodowanie warosci json z googla
-	
-	if( $odpowedz_google->success == false ) 
-	{
-		$sprawdzenie_danych = false;
-		$_SESSION['blad_captcha'] = "Brak weryfikacji uzytkownika!";
+		$_SESSION['blad_regulamin'] = '<p style = "color: red"> Zaakceptuj regulamin! <br><br></p>';;
 		header('Location: rejestracja_form.php');
 	}
 	
@@ -83,7 +71,7 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 		if( $liczba_uzytkownikow != 0 )
 		{
 			$brak_urzytkownika = false;
-			$_SESSION['blad_uzytkownik'] = "Użytkownik o podanym loginie już istnieje!";
+			$_SESSION['blad_uzytkownik'] = '<p style = "color: red"> Użytkownik o podanym loginie już istnieje! <br><br></p>';
 			header('Location: rejestracja_form.php');
 		}
 		
@@ -96,7 +84,7 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 		if( $liczba_uzytkownikow != 0 )
 		{
 			$brak_urzytkownika = false;
-			$_SESSION['blad_uzytkownik_email'] = "Użytkownik o podanym email już istnieje!";
+			$_SESSION['blad_uzytkownik_email'] = '<p style = "color: red"> Użytkownik o padanym adresie email już istnieje! <br><br></p>';
 			header('Location: rejestracja_form.php');
 		}
 		

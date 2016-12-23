@@ -10,7 +10,7 @@ session_start();
 	<head>
 	
 		<meta charset="UTF-8">
-		<title>Strona główna</title>
+		<title>Kontakt z administratorem</title>
 		<link rel = "stylesheet" href = "styl_strony.css" type = "text/css" >
 		<link href = "https://fonts.googleapis.com/css?family=Lato" rel = "stylesheet" >
 		<link href = "https://fonts.googleapis.com/css?family=Exo:900" rel = "stylesheet">
@@ -19,18 +19,18 @@ session_start();
 	
 		<body>
 			
-			<div class = "okno_glowne" >
+			<div class = okno_glowne >
 			
 				<div class = "logo" >
 					Domowe systemy alarmowe
 				</div>
-				
+			 
 				<div class = "top_okno" >
 					Bezpieczeństwo to jedna z najbardziej cenionych wartości w życiu człowieka. <br>
 					Chcemy chronić siebie, swoich bliskich oraz nasze mienie.
-				</div>
-				
-				<?php
+    			</div>
+    			
+    			<?php
 					if( !isset( $_SESSION[ 'zalogowano' ] ) )
 					{
 						echo '<div class = "formularz" >';
@@ -53,7 +53,7 @@ session_start();
 						echo '</div>';
 					}
 				?>
-					
+				
 				<div class = "lewe_okno_menu" >	
 					<div class = "przyciski" > 		
 						<a href = "index.php" class = "przycisk_link" > Strona główna </a> 
@@ -73,7 +73,10 @@ session_start();
 				</div>
 				
 				<div class = "prawe_okno_text" >
-					<img alt="system_alarmowy" src="alarm.jpg" >
+					Kontakt z administratorem strony <br>
+					Imię i nazwisko administratora: Krzysztoń Łukasz <br>
+					Numer telefonu: 661473199 <br>
+					Adres email: lukaczkrzy@gmail.com					
 				</div>
 				
 				<div class = "stopka" >					

@@ -33,21 +33,21 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 	if( $dl_haslo < 5 || $dl_haslo > 20 )
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_haslo'] = '<p style = "color: red"> Hasło powinno zawierać od 5 do 20 znaków! <br><br></p>';;
+		$_SESSION['blad_haslo'] = '<p style = "color: red"> Hasło powinno zawierać od 5 do 20 znaków! <br><br></p>';
 		header('Location: rejestracja_form.php');
 	}
 	
 	if( $haslo != $haslo1 )
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_haslo'] = '<p style = "color: red"> Podane hasła nie są takie same! <br><br></p>';;
+		$_SESSION['blad_haslo'] = '<p style = "color: red"> Podane hasła nie są takie same! <br><br></p>';
 		header('Location: rejestracja_form.php');
 	}
 	
 	if( !isset( $_POST['regulamin'] ) ) //akceptacja regulaminu
 	{
 		$sprawdzenie_danych = false;
-		$_SESSION['blad_regulamin'] = '<p style = "color: red"> Zaakceptuj regulamin! <br><br></p>';;
+		$_SESSION['blad_regulamin'] = '<p style = "color: red"> Zaakceptuj regulamin! <br><br></p>';
 		header('Location: rejestracja_form.php');
 	}
 	

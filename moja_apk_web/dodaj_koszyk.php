@@ -1,20 +1,8 @@
-<?php 
+
+<?php
 
 session_start();
 
-if (isset($_SESSION['login'])) unset($_SESSION['login']);
-if (isset($_SESSION['haslo'])) unset($_SESSION['haslo']);
-if (isset($_SESSION['haslo1'])) unset($_SESSION['haslo1']);
-if (isset($_SESSION['email'])) unset($_SESSION['email']);
-if (isset($_SESSION['regulamin'])) unset($_SESSION['regulamin']);
-if (isset($_SESSION['blad_login'])) unset($_SESSION['blad_login']);
-if (isset($_SESSION['blad_haslo'])) unset($_SESSION['blad_haslo']);
-if (isset($_SESSION['blad_email'])) unset($_SESSION['blad_email']);
-if (isset($_SESSION['blad_regulamin'])) unset($_SESSION['blad_regulamin']);
-if (isset($_SESSION['blad_capcha'])) unset($_SESSION['blad_capcha']);
-if (isset($_SESSION['blad_uzytkownik'])) unset($_SESSION['blad_uzytkownik']);
-if (isset($_SESSION['blad_haslo'])) unset($_SESSION['blad_haslo']);
-if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_email']);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +10,7 @@ if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_
 	<head>
 	
 		<meta charset="UTF-8">
-		<title>Zarejestrowałes się</title>
+		<title>Strona główna</title>
 		<link rel = "stylesheet" href = "styl_strony.css" type = "text/css" >
 		<link href = "https://fonts.googleapis.com/css?family=Lato" rel = "stylesheet" >
 		<link href = "https://fonts.googleapis.com/css?family=Exo:900" rel = "stylesheet">
@@ -85,8 +73,49 @@ if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_
 				</div>
 				
 				<div class = "prawe_okno_text" >
-					Dziękuję za rejestrację :) <br><br>
-					Teraz możesz zalogować się na swoje konto.
+					
+					<?php
+						$id_produktu = $_GET[ 'koszyk' ];
+														
+						require_once 'log_db.php'; //dolacz plik z loginem do db
+							
+						$polaczenie = mysqli_connect( $host_db, $login_db, $haslo_db, $nazwa_db ); //polaczenie z bd
+							
+						if( !$polaczenie ) //jesli rozne od zera
+						{
+							echo "Błąd połączenia z bazą danych". mysqli_errno( $polaczenie );
+						}
+						else //to szukaj danych
+						{
+							$zapytanie = "SELECT * FROM `produkt` WHERE `id` = ".$id_produktu;
+							$szukaj = mysqli_query( $polaczenie, $zapytanie ); //wyslanie zapytania sql
+							$produkty = mysqli_fetch_assoc( $szukaj ); //tablica skojarzona z nazwami kolumn w d
+							
+							$_SESSION[ 'koszyk' ][] = array( 'id_produktu' => $id_produktu, 'nazwa' => $produkty[ 'nazwa' ] , 
+															'cena' => $produkty[ 'cena' ] , 'dos_szt' => $produkty[ 'dost_szt' ]  );
+							
+							echo 'Zawartość Twojego koszyka <br><br>';
+							
+							foreach ( $_SESSION[ 'koszyk' ] as $produkt )
+							{
+								echo  "Nazwa:".$produkt[ 'nazwa' ]."  |  Dostępna liczba szt.: ".$produkt[ 'dos_szt' ]."  |  Cena produktu: "
+										.$produkt[ 'cena' ]."<br>";
+								echo '<br>';
+							}
+							if( isset( $_SESSION[ 'zalogowano' ] ) )
+							{
+								echo '<div class = "przyciski_sklep" >';
+									echo '<a href = "zamowienie.php" class = "przycisk_link" > Zamów produkty </a>';
+								echo '</div>';
+							}
+							echo '<div class = "przyciski_sklep" >';
+								echo '<a href = "czysc_koszyk.php" class = "przycisk_link" > Czyść koszyk </a>';
+							echo '</div>';
+							echo '<br><br><br>';
+						}
+						mysqli_close( $polaczenie ); //zamkniecie polaczenia
+					?>
+					
 				</div>
 				
 				<div class = "stopka" >					

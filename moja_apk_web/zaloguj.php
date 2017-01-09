@@ -37,7 +37,12 @@ else //to szukaj danych
 		{
 			$_SESSION['login'] = $dane[ 'login' ];
 		
-			$_SESSION['zalogowano'] = true; 
+			$_SESSION['zalogowano'] = true;
+			
+			if( $dane['login'] == 'lukacz' )
+				$_SESSION['admin_zalogowany'] = true;
+			else
+				unset( $_SESSION['admin_zalogowany'] );
 		
 			unset($_SESSION['blad_log']);    //usun zmienna 
 		

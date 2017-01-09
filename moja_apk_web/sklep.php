@@ -89,6 +89,12 @@ session_start();
 								$szukaj = mysqli_query( $polaczenie, $zapytanie ); //wyslanie zapytania sql
 								$ilosc_produktow = mysqli_num_rows( $szukaj ); //zwraca liczbe produktow
 								
+								if( isset( $_SESSION[ 'usunieto' ] ) )
+								{
+									echo $_SESSION[ 'usunieto' ];
+									unset( $_SESSION[ 'usunieto' ] );
+								}
+								
 								if( $ilosc_produktow != 0 )
 								{
 									echo '<tr>
@@ -97,12 +103,11 @@ session_start();
 											<th> Cena jednej sztuki </th>
 										  </tr>';
 									
-									$produkty = mysqli_fetch_assoc( $szukaj ); //tablica skojarzona z nazwami kolumn w db
-									
 									$i = 0; //wyswietlanie wszystkich produktow
 									
 									while ( $i < $ilosc_produktow ) //wyswietlanie wszystkich produktow w db
 									{
+										$produkty = mysqli_fetch_assoc( $szukaj ); //tablica skojarzona z nazwami kolumn w d
 										echo '<tr>';
 											echo '<td>'. $produkty[ 'nazwa' ] .' </td>';
 											echo '<td>'. $produkty[ 'dost_szt' ] .'szt. </td>';
@@ -116,16 +121,17 @@ session_start();
 																echo '<a href = "dodaj_produkt.php" class = "przycisk_link" > Dodaj produkt </a>'; 
 															echo '</div>';
 															echo '<div class = "przyciski_sklep" >';
-																echo '<a href = "edytuj_produkt" class = "przycisk_link" > Edytuj produkt </a>';
+																echo '<a href = "edytuj_produkt.php?edytuj='.$produkty[ 'id' ].'" class = "przycisk_link" > Edytuj produkt </a>';
 															echo '</div>';
 															echo '<div class = "przyciski_sklep" >';
-																echo '<a href = "usun_produkt.php" class = "przycisk_link" > Usuń produkt </a>';
+																echo '<a href = "usun_produkt.php?usun='.$produkty[ 'id' ].'" class = "przycisk_link" > Usuń produkt </a>';
+																						//przeslanie id produktu po ? :D
 															echo '</div>';
 														}
 														else
 														{
 															echo '<div class = "przyciski_sklep" >';
-																echo '<a href = "dodaj_koszyk.php" class = "przycisk_link" > Dodaj do koszyka </a>';
+																echo '<a href = "dodaj_koszyk.php?koszyk='.$produkty[ 'id' ].'" class = "przycisk_link" > Dodaj do koszyka </a>';
 																echo '</div>';
 														  echo '</td>';
 														}
@@ -152,6 +158,9 @@ session_start();
 									}
 								}
 							}
+							
+							mysqli_close( $polaczenie ); //zamkniecie polaczenia
+							
 						?>
 					</table>
 				</div>

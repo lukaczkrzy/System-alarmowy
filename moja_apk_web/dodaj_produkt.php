@@ -1,20 +1,8 @@
+
 <?php 
 
 session_start();
 
-if (isset($_SESSION['login'])) unset($_SESSION['login']);
-if (isset($_SESSION['haslo'])) unset($_SESSION['haslo']);
-if (isset($_SESSION['haslo1'])) unset($_SESSION['haslo1']);
-if (isset($_SESSION['email'])) unset($_SESSION['email']);
-if (isset($_SESSION['regulamin'])) unset($_SESSION['regulamin']);
-if (isset($_SESSION['blad_login'])) unset($_SESSION['blad_login']);
-if (isset($_SESSION['blad_haslo'])) unset($_SESSION['blad_haslo']);
-if (isset($_SESSION['blad_email'])) unset($_SESSION['blad_email']);
-if (isset($_SESSION['blad_regulamin'])) unset($_SESSION['blad_regulamin']);
-if (isset($_SESSION['blad_capcha'])) unset($_SESSION['blad_capcha']);
-if (isset($_SESSION['blad_uzytkownik'])) unset($_SESSION['blad_uzytkownik']);
-if (isset($_SESSION['blad_haslo'])) unset($_SESSION['blad_haslo']);
-if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_email']);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +10,7 @@ if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_
 	<head>
 	
 		<meta charset="UTF-8">
-		<title>Zarejestrowałes się</title>
+		<title>Strona główna</title>
 		<link rel = "stylesheet" href = "styl_strony.css" type = "text/css" >
 		<link href = "https://fonts.googleapis.com/css?family=Lato" rel = "stylesheet" >
 		<link href = "https://fonts.googleapis.com/css?family=Exo:900" rel = "stylesheet">
@@ -85,8 +73,28 @@ if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_
 				</div>
 				
 				<div class = "prawe_okno_text" >
-					Dziękuję za rejestrację :) <br><br>
-					Teraz możesz zalogować się na swoje konto.
+					<div class = "pole_input" >
+						<form action = "dodaj_nowy_prod.php" method="post" >
+							<?php
+								if( isset( $_SESSION[ 'add_produkt' ] ))
+								{
+									echo $_SESSION[ 'add_produkt' ];
+									unset( $_SESSION[ 'add_produkt' ] );
+								}
+								
+								if(isset( $_SESSION['blad_form_prod'] ) )
+								{
+									echo $_SESSION['blad_form_prod'];
+									unset( $_SESSION['blad_form_prod'] );
+								}
+							?>
+							Nazwa nowego produktu: <input name = "nazwa_prod" type = "text" > 
+							Ilość dostępnych sztuk: <input name = "ilosc_szt" type = "number" >
+							Cena jednej sztuki produktu: <input name = "cena_prod" type = "number" >
+							<input type = "submit" value = "Zapisz produkt" >
+							<input type = "reset" value = "Resetuj pola formularza" >
+						</form>
+					</div>
 				</div>
 				
 				<div class = "stopka" >					

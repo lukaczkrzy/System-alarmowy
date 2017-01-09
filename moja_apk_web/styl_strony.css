@@ -81,10 +81,27 @@ body
 	font-size: 12pt;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	background-color: #D9D9D9
+	background-color: #D9D9D9;
 }
 
 .przyciski:HOVER
+{
+	background-color: #F5BF78;
+}
+
+.przyciski_sklep
+{
+	padding: 5px;
+	min-width: 100px;
+	font-size: 12pt;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	background-color: #D9D9D9;
+	float: left;
+}
+
+.przyciski_sklep:HOVER
 {
 	background-color: #F5BF78;
 }
@@ -96,7 +113,8 @@ body
 
 input[ type = text ],
 input[ type = password ],
-input[ type = email ]
+input[ type = email ],
+input[ type = number ]
 {
 	width: 300px;
 	background-color: #F5F5F5;
@@ -108,7 +126,7 @@ input[ type = email ]
 
 input[ type = submit ]
 {
-	background-color: #D9D9D9
+	background-color: #D9D9D9;
 	border: none;
 	border-radius: 5px;
 	padding: 5px 10px;
@@ -119,7 +137,7 @@ input[ type = submit ]
 
 input[ type = reset ]
 {
-	background-color: #D9D9D9
+	background-color: #D9D9D9;
 	border: none;
 	border-radius: 5px;
 	padding: 5px 10px;

@@ -54,8 +54,20 @@ session_start();
 						<a href = "sklep.php" class = "przycisk_link" > Sklep </a>
 					</div>
 					<div class = "przyciski" > 
+						<a href = "dodaj_koszyk.php" class = "przycisk_link" > Koszyk </a>
+					</div>
+					<div class = "przyciski" > 
 						<a href = "kontakt.php" class = "przycisk_link" > Kontakt </a> 
 					</div>
+					<?php 
+						
+						if( isset( $_SESSION['admin_zalogowany'] ) )
+						{
+							echo '<div class = "przyciski" >
+									<a href = "alarm.php" class = "przycisk_link" > Alarm </a>
+								 </div>';
+						}
+					?>
 				</div>
 				
 				<div class = "prawe_okno_text" >

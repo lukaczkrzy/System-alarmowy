@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 session_start();
 
@@ -93,8 +93,8 @@ if( isset( $_POST['login'] ) ) //sprawdzanie czy formularz został wysłąny
 			$haslo_hash = password_hash( $haslo, PASSWORD_DEFAULT );
 			$data = date('Y-m-d H:i:s');
 			$ip = $_SERVER['SERVER_ADDR'];
-			$query = " INSERT INTO `dane_uzytkownikow`(`login`, `haslo`, `email`, `data_rejestracji`, `ip`) 
-					VALUES ( '$login', '$haslo_hash', '$email', '$data', '$ip' ) ";
+			$query = " INSERT INTO `dane_uzytkownikow`(`login`, `haslo`, `email`, `data_rejestracji`) 
+					VALUES ( '$login', '$haslo_hash', '$email', '$data' ) ";
 			mysqli_query( $polaczenie, $query ); //wyslanie zapytania sql
 			header('Location: zarejestrowano.php');
 		}

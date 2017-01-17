@@ -80,6 +80,9 @@ if (isset($_SESSION['blad_uzytkownik_email'])) unset($_SESSION['blad_uzytkownik_
 						<a href = "sklep.php" class = "przycisk_link" > Sklep </a>
 					</div>
 					<div class = "przyciski" > 
+						<a href = "dodaj_koszyk.php" class = "przycisk_link" > Koszyk </a>
+					</div>
+					<div class = "przyciski" > 
 						<a href = "kontakt.php" class = "przycisk_link" > Kontakt </a> 
 					</div>
 				</div>

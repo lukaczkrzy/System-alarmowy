@@ -68,13 +68,27 @@ session_start();
 						<a href = "sklep.php" class = "przycisk_link" > Sklep </a>
 					</div>
 					<div class = "przyciski" > 
+						<a href = "dodaj_koszyk.php" class = "przycisk_link" > Koszyk </a>
+					</div>
+					<div class = "przyciski" > 
 						<a href = "kontakt.php" class = "przycisk_link" > Kontakt </a> 
 					</div>
+					<?php 
+						
+						if( isset( $_SESSION['admin_zalogowany'] ) )
+						{
+							echo '<div class = "przyciski" >
+									<a href = "alarm.php" class = "przycisk_link" > Alarm </a>
+								 </div>';
+						}
+					?>
 				</div>
 				
 				<div class = "prawe_okno_text" >
 					
 					<?php
+					if( isset( $_GET[ 'koszyk' ] ) )
+					{
 						$id_produktu = $_GET[ 'koszyk' ];
 														
 						require_once 'log_db.php'; //dolacz plik z loginem do db
@@ -114,6 +128,35 @@ session_start();
 							echo '<br><br><br>';
 						}
 						mysqli_close( $polaczenie ); //zamkniecie polaczenia
+					}
+					else
+					{	
+							echo 'Zawartość Twojego koszyka <br><br>';
+							
+							if( isset( $_SESSION[ 'koszyk' ] ) )
+								foreach ( $_SESSION[ 'koszyk' ] as $produkt )
+								{
+									echo  "Nazwa:".$produkt[ 'nazwa' ]."  |  Dostępna liczba szt.: ".$produkt[ 'dos_szt' ]."  |  Cena produktu: "
+											.$produkt[ 'cena' ]."<br>";
+											echo '<br>';
+								}
+							else 
+							{
+								echo 'Koszyk pusty<br><br>';
+							}
+							if( isset( $_SESSION[ 'zalogowano' ] ) )
+							{
+								echo '<div class = "przyciski_sklep" >';
+								echo '<a href = "zamowienie.php" class = "przycisk_link" > Zamów produkty </a>';
+								echo '</div>';
+							}
+							echo '<div class = "przyciski_sklep" >';
+							echo '<a href = "czysc_koszyk.php" class = "przycisk_link" > Czyść koszyk </a>';
+							echo '</div>';
+							echo '<br><br><br>';
+						
+					}
+						
 					?>
 					
 				</div>
